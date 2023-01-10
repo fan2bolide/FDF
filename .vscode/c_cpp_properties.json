@@ -3,7 +3,6 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**/head/*",
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/head"
             ],
@@ -15,12 +14,7 @@
             "cStandard": "c17",
             "cppStandard": "c++17",
             "intelliSenseMode": "macos-clang-x64",
-            "configurationProvider": "ms-vscode.makefile-tools",
-            "compilerArgs": [
-                "-I head",
-                "-I libft/head",
-                "-I mlx"
-            ]
+            "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],
     "version": 4

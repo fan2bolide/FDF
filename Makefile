@@ -6,20 +6,20 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/09 10:12:21 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/01/09 12:57:29 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-FLAGS = -Werror -Wall -Wextra -I stack_lib -I libft -I . -I mlx
+FLAGS = -Werror -Wall -Wextra -I libft/head -I libft -I . -I mlx
 
 DEBUG_FLAGS = -fsanitize=address -g3
 
 LIBFT = libft/libft.a
 MLX = libmlx.dylib
 
-SRC = fdf.c
+SRC = fdf.c fdf_parsing.c
 
 BONUS_SRC = 
 
@@ -36,8 +36,8 @@ all : lib mlx .main
 	touch .main
 	$(RM) .bonus
 
-$(NAME): $(OBJ) .main
-	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+$(NAME): $(OBJ) $(LIBFT) .main
+	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -fsanitize=address -o $(NAME)
 
 bonus : create_obj_folder lib .bonus
 
@@ -50,15 +50,13 @@ create_obj_folder :
 	mkdir -p obj
 
 obj/%.o : src/%.c Makefile
-	cc -Wall -Wextra -Werror -c $< -MD -I libft/headers -I head -I mlx -o $@
+	cc -Wall -Wextra -Werror -c $< -MD -I libft/head -I head -I mlx -o $@
 
 debug : lib
 	$(CC) $(OBJ) $(LIBFT) $(FLAGS) $(DEBUG_FLAGS) -o debug$(NAME)
 
-lib : $(LIBFT)
-
-$(LIBFT) : libft
-	$(MAKE) -C libft
+lib : libft
+	@$(MAKE) -C libft
 
 mlx : $(MLX)
 
@@ -79,6 +77,7 @@ clean :
 	$(MAKE) clean -C mlx
 	
 fclean : clean
+	$(RM) libmlx.dylib
 	$(RM) $(NAME)
 	$(RM) .main .bonus
 	$(MAKE) fclean -C libft
@@ -90,6 +89,6 @@ rm_lib :
 re : fclean
 	$(MAKE) all
 
-.PHONY : all lib run re clean fclean bonus rm_lib
+.PHONY : all run re clean fclean bonus rm_lib
 
 -include $(DEPENDS)

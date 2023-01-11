@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 06:15:40 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/09 13:55:32 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 09:25:12 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ typedef struct	s_map
 	int	width;
 	int	height;
 }		t_map;
+
+typedef struct	s_st
+{
+	void	*win;
+	void	*mlx;
+}			t_st;
 
 
 t_map	*fdf_get_map(char *input_path);

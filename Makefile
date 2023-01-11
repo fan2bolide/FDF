@@ -6,7 +6,7 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/09 12:57:29 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/01/11 10:21:57 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJ = $(addprefix obj/,$(SRC:.c=.o))
 BONUS_OBJ = $(addprefix obj/,$(BONUS_SRC:.c=.o))
 
 all : lib mlx .main
-	$(MAKE) $(NAME)
+	@$(MAKE) $(NAME)
 
 .main :
 	touch .main

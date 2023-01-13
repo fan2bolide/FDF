@@ -6,7 +6,7 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/11 10:21:57 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/01/12 16:44:34 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ all : lib mlx .main
 	$(RM) .bonus
 
 $(NAME): $(OBJ) $(LIBFT) .main
-	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -fsanitize=address -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -fsanitize=address -g3 -o $(NAME)
 
 bonus : create_obj_folder lib .bonus
 

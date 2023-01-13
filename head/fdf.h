@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 06:15:40 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/11 09:25:12 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/12 19:12:57 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 # include "mlx.h"
 # include "libft.h"
+# include <math.h>
 
 typedef struct s_data
 {
@@ -24,19 +25,26 @@ typedef struct s_data
 	int		endian;
 }			t_data;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+	int z;
+}			t_point;
+
 typedef struct	s_map
 {
-	int	**data;
+	t_point **data;
 	int	width;
 	int	height;
 }		t_map;
 
-typedef struct	s_st
+typedef struct	s_fdf
 {
 	void	*win;
 	void	*mlx;
-}			t_st;
-
+	t_data	data;
+}			t_fdf;
 
 t_map	*fdf_get_map(char *input_path);
 

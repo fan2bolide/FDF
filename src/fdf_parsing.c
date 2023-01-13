@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:31:56 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/09 14:20:37 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/12 19:12:24 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	fdf_fill_map(t_map *map, char **datas)
 	i = 0;
 	while (i < map->height)
 	{
-		map->data[i] = ft_calloc(sizeof(int), map->width);
+		map->data[i] = ft_calloc(sizeof(t_point), map->width);
 		if (!map->data[i])
 			return (0);
 		j = 0;
@@ -92,7 +92,9 @@ static int	fdf_fill_map(t_map *map, char **datas)
 			return (0);
 		while (j < map->width)
 		{
-			map->data[i][j] = ft_atoi(line[j]);
+			map->data[i][j].x = i;
+			map->data[i][j].y = j;
+			map->data[i][j].z = ft_atoi(line[j]);
 			j++;
 		}
 		ft_split_destroy(line);

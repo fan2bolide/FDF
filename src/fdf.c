@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 04:09:20 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/14 17:10:26 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/14 18:28:05 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ void	point_get_iso_coords(t_point *point, int mult, t_map *map)
 	(void)map;
 	x = ((*point).x) * mult;
 	y = ((*point).y) * mult;
+	// ((*point).z) *= mult;
 	(*point).x = (x - y) * cos(3 * M_PI_4);
-	(*point).y = ((x + y) * sin(3 * M_PI_4) * sqrt(0.66)) - (*point).z;
+	(*point).y = ((x + y) * sin(3 * M_PI_4) * sqrt(0.66));
 }
 
 void	fdf_put_line(t_fdf *fdf, t_point a, t_point b)
@@ -85,6 +86,24 @@ void	fdf_draw_lines(t_fdf *fdf, t_map *map)
 	}
 }
 
+void	fdf_apply_height(t_fdf *fdf, t_map *map, int mult)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			map->data[i][j].y -= ((fdf->win_size.x * fdf->win_size.y) / (mult * mult) * map->data[i][j].z) / (mult * M_PI);
+			j++;
+		}
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_fdf	*fdf;
@@ -106,21 +125,20 @@ int	main(int argc, char **argv)
 	map = fdf_get_map(argv[1]);
 	if (!map)
 		return (1);
-	mult = (ft_min(fdf->win_size.y, fdf->win_size.x) / ft_max(map->width, map->height)) * 0.9;
+	mult = (ft_min(fdf->win_size.y, fdf->win_size.x) / ft_max(map->width, map->height));
+	ft_printf("mult = %d\n", mult);
 	i = 0;
 	while (i < map->height)
 	{
 		j = 0;
 		while (j < map->width)
-		{
 			point_get_iso_coords(map->data[i] + j++, mult, map);
-		}
 		i++;
 	}
-	ft_printf("%d\n", mult / ft_max(map->height, map->width));
 	t_point shift;
 	shift.x = fdf->win_size.x / 2 - map->data[map->height / 2][map->width / 2].x;
-	shift.y = fdf->win_size.y / 2 - map->data[map->height / 2][map->width / 2].y - ((mult / ft_max(map->height, map->width)) * map->data[map->height / 2][map->width / 2].z);
+	shift.y = fdf->win_size.y / 2 - map->data[map->height / 2][map->width / 2].y;
+	fdf_apply_height(fdf, map, mult);
 	i = 0;
 	while (i < map->height)
 	{

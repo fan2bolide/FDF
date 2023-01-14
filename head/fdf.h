@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 06:15:40 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/12 19:12:57 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/13 11:37:41 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_fdf
 {
 	void	*win;
 	void	*mlx;
+	t_point	win_size;
 	t_data	data;
 }			t_fdf;
 

@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 04:09:20 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/15 20:45:46 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/15 23:30:30 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,16 @@ t_point	get_point(int x, int y, int z)
 	return (point);
 }
 
-void	point_get_iso_coords(t_point *point, int mult, t_map *map)
+void	point_get_iso_coords(t_point *point, int mult)
 {
 	int	x;
 	int	y;
 
-	(void)map;
-	x = ((*point).x) * mult;
-	y = ((*point).y) * mult;
-	// ((*point).z) *= mult;
+	x = (*point).x * mult;
+	y = (*point).y * mult;
+	(*point).z *= mult;
 	(*point).x = (x - y) * cos(3 * M_PI_4);
-	(*point).y = ((x + y) * sin(3 * M_PI_4)) / 2;
+	(*point).y = (((x + y) * sin(3 * M_PI_4))) / sqrt(3);
 }
 
 void	fdf_put_line(t_fdf *fdf, t_point a, t_point b)
@@ -101,7 +100,7 @@ void	fdf_apply_height(t_fdf *fdf, t_map *map, int mult)
 		j = 0;
 		while (j < map->width)
 		{
-			map->data[i][j].y -= (offset * map->data[i][j].z) / fdf->win_size.y;
+			map->data[i][j].y -= map->data[i][j].z / sqrt(3);
 			j++;
 		}
 		i++;
@@ -122,8 +121,8 @@ int	main(int argc, char **argv)
 	if (!fdf)
 		return (1);
 	fdf->mlx = mlx_init();
-	fdf->win_size.x = 1920;
-	fdf->win_size.y = 1080;
+	fdf->win_size.y = 720;
+	fdf->win_size.x = fdf->win_size.y * 3 / 2;
 	fdf->win = mlx_new_window(fdf->mlx, fdf->win_size.x, fdf->win_size.y, "c moi wesh");
 	map = fdf_get_map(argv[1]);
 	if (!map)
@@ -135,7 +134,7 @@ int	main(int argc, char **argv)
 	{
 		j = 0;
 		while (j < map->width)
-			point_get_iso_coords(map->data[i] + j++, mult, map);
+			point_get_iso_coords(map->data[i] + j++, mult);
 		i++;
 	}
 	t_point shift;
@@ -150,17 +149,6 @@ int	main(int argc, char **argv)
 		{
 			map->data[i][j].x += shift.x;
 			map->data[i][j].y += shift.y;
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	while (i < map->height)
-	{
-		j = 0;
-		while (j < map->width)
-		{
-			mlx_pixel_put(fdf->mlx, fdf->win, map->data[i][j].x, map->data[i][j].y, 0xFFFFFF);
 			j++;
 		}
 		i++;

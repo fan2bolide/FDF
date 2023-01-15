@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:31:56 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/12 19:12:24 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/15 19:38:01 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ t_map	*fdf_get_map(char *input_path)
 	free(file);
 	map = malloc(sizeof(t_map));
 	map->height = fdf_map_get_height(lines);
-	map->width = fdf_map_get_width(lines);	
+	map->width = fdf_map_get_width(lines);
 	if (!map->width)
 		return (ft_split_destroy(lines), free(map), ft_printf("Error : Incorrect map format.\n"), NULL);
 	map->data = ft_calloc(sizeof(int *), map->height);

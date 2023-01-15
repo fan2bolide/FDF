@@ -6,7 +6,7 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/12 16:44:34 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/01/15 19:52:53 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ mlx : $(MLX)
 
 $(MLX) : 
 	$(MAKE) -C mlx
-	@cp mlx/libmlx.dylib ./libmlx.dylib
+	# @cp mlx/libmlx.dylib ./libmlx.dylib
 
 libft :
 	git clone git@github.com:fan2bolide/libft.git

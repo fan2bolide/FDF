@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 04:09:20 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/14 18:28:05 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/15 20:45:46 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 int	close_window(t_fdf *fdf)
 {
 	mlx_destroy_window(fdf->mlx, fdf->win);
-	mlx_destroy_image(fdf->mlx, fdf->data.img);
 	free(fdf);
 	exit(0);
 	return(0);
@@ -42,7 +41,7 @@ void	point_get_iso_coords(t_point *point, int mult, t_map *map)
 	y = ((*point).y) * mult;
 	// ((*point).z) *= mult;
 	(*point).x = (x - y) * cos(3 * M_PI_4);
-	(*point).y = ((x + y) * sin(3 * M_PI_4) * sqrt(0.66));
+	(*point).y = ((x + y) * sin(3 * M_PI_4)) / 2;
 }
 
 void	fdf_put_line(t_fdf *fdf, t_point a, t_point b)
@@ -91,13 +90,18 @@ void	fdf_apply_height(t_fdf *fdf, t_map *map, int mult)
 	int	i;
 	int	j;
 
+	(void)fdf;
+	(void)mult;
+	int offset;
+
+	offset = (map->data[1][1].y - map->data[0][0].y) * (map->width * map->height);
 	i = 0;
 	while (i < map->height)
 	{
 		j = 0;
 		while (j < map->width)
 		{
-			map->data[i][j].y -= ((fdf->win_size.x * fdf->win_size.y) / (mult * mult) * map->data[i][j].z) / (mult * M_PI);
+			map->data[i][j].y -= (offset * map->data[i][j].z) / fdf->win_size.y;
 			j++;
 		}
 		i++;
@@ -118,7 +122,6 @@ int	main(int argc, char **argv)
 	if (!fdf)
 		return (1);
 	fdf->mlx = mlx_init();
-	fdf->data.img = mlx_new_image(fdf->mlx, 800, 800);
 	fdf->win_size.x = 1920;
 	fdf->win_size.y = 1080;
 	fdf->win = mlx_new_window(fdf->mlx, fdf->win_size.x, fdf->win_size.y, "c moi wesh");

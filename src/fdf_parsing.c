@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:31:56 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/15 19:38:01 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/16 14:16:02 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ static int	fdf_fill_map(t_map *map, char **datas)
 t_map	*fdf_get_map(char *input_path)
 {
 	t_map	*map;
-	char **lines;
-	char *file;
+	char	**lines;
+	char	*file;
 
 	file = fdf_get_file(input_path);
 	if (!file)
@@ -118,7 +118,8 @@ t_map	*fdf_get_map(char *input_path)
 	map->height = fdf_map_get_height(lines);
 	map->width = fdf_map_get_width(lines);
 	if (!map->width)
-		return (ft_split_destroy(lines), free(map), ft_printf("Error : Incorrect map format.\n"), NULL);
+		return (ft_split_destroy(lines), free(map),
+			ft_printf("Error : Incorrect map format.\n"), NULL);
 	map->data = ft_calloc(sizeof(int *), map->height);
 	fdf_fill_map(map, lines);
 	return (map);

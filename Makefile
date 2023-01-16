@@ -6,7 +6,7 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/15 19:52:53 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/01/16 14:37:03 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ DEBUG_FLAGS = -fsanitize=address -g3
 LIBFT = libft/libft.a
 MLX = libmlx.dylib
 
-SRC = fdf.c fdf_parsing.c
-
+SRC = fdf.c fdf_parsing.c fdf_map_get.c fdf_isometrical.c fdf_drawing.c fdf_center_in_frame.c
+ 
 BONUS_SRC = 
 
 DEPENDS	:=	$(addprefix obj/,$(SRC:.c=.d)) $(addprefix obj/,${BONUS_SRC:.c=.d})

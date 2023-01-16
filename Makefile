@@ -6,7 +6,7 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/16 14:37:03 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/01/16 15:49:37 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ DEBUG_FLAGS = -fsanitize=address -g3
 LIBFT = libft/libft.a
 MLX = libmlx.dylib
 
-SRC = fdf.c fdf_parsing.c fdf_map_get.c fdf_isometrical.c fdf_drawing.c fdf_center_in_frame.c
+SRC = fdf.c fdf_parsing.c fdf_map_utils.c fdf_isometrical.c fdf_drawing.c fdf_center_in_frame.c
  
 BONUS_SRC = 
 
@@ -37,7 +37,7 @@ all : lib mlx .main
 	$(RM) .bonus
 
 $(NAME): $(OBJ) $(LIBFT) .main
-	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -fsanitize=address -g3 -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 bonus : create_obj_folder lib .bonus
 
@@ -60,9 +60,8 @@ lib : libft
 
 mlx : $(MLX)
 
-$(MLX) : 
+$(MLX) :
 	$(MAKE) -C mlx
-	# @cp mlx/libmlx.dylib ./libmlx.dylib
 
 libft :
 	git clone git@github.com:fan2bolide/libft.git

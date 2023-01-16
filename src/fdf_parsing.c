@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:31:56 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/16 14:16:02 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/16 15:21:47 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static char	*fdf_get_file(char *input_path)
 	char	*input_line;
 
 	input_fd = open(input_path, O_RDONLY);
+	if (input_fd == -1)
+		return (NULL);
 	file = get_next_line(input_fd);
 	if (!file)
 		return (NULL);
@@ -122,5 +124,6 @@ t_map	*fdf_get_map(char *input_path)
 			ft_printf("Error : Incorrect map format.\n"), NULL);
 	map->data = ft_calloc(sizeof(int *), map->height);
 	fdf_fill_map(map, lines);
+	ft_split_destroy(lines);
 	return (map);
 }

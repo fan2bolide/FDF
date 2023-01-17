@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:21:17 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/16 16:17:21 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 19:58:27 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void	fdf_map_get_isometrical(t_map *map, t_fdf *fdf)
 		j = 0;
 		while (j < map->width)
 		{
-			point_get_iso_coords(map->data[i] + j, scale);
-			j++;
+			point_get_iso_coords(map->data[i] + j++, scale);
 		}
 		i++;
 	}

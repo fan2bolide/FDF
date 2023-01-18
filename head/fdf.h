@@ -6,15 +6,18 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 06:15:40 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/16 15:23:33 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 19:17:17 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include "mlx.h"
 # include "libft.h"
+# include "mlx.h"
 # include <math.h>
+# ifndef ESC_KEY
+#  define ESC_KEY 53
+# endif
 
 typedef struct s_data
 {
@@ -27,32 +30,35 @@ typedef struct s_data
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int z;
+	int		x;
+	int		y;
+	int		z;
 }			t_point;
 
-typedef struct	s_map
+typedef struct s_map
 {
-	t_point **data;
-	int	width;
-	int	height;
-}		t_map;
+	t_point	**data;
+	int		width;
+	int		height;
+}			t_map;
 
-typedef struct	s_fdf
+typedef struct s_fdf
 {
 	void	*win;
 	void	*mlx;
 	t_point	win_size;
-	t_data	data;
+	t_data	img;
 }			t_fdf;
 
-t_map	*fdf_get_map(char *input_path);
-int		fdf_map_get_highest(t_map *map);
-int		fdf_map_get_lowest(t_map *map);
-void	fdf_map_destroy(t_map *map);
-void	fdf_draw_lines(t_fdf *fdf, t_map *map);
-void	fdf_map_get_isometrical(t_map *map, t_fdf *fdf);
-void	fdf_center_in_frame(t_map *map, t_fdf *fdf);
+void		fdf_mlx_config(t_fdf *fdf);
+void		fdf_image_handling(t_fdf *fdf, t_map *map);
+void		fdf_pixel_put(t_data *data, int x, int y, int color);
+t_map		*fdf_get_map(char *input_path);
+int			fdf_map_get_highest(t_map *map);
+int			fdf_map_get_lowest(t_map *map);
+void		fdf_map_destroy(t_map *map);
+void		fdf_draw_lines(t_fdf *fdf, t_map *map);
+void		fdf_map_get_isometrical(t_map *map, t_fdf *fdf);
+void		fdf_center_in_frame(t_map *map, t_fdf *fdf);
 
-#endif
+# endif

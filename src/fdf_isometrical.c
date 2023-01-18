@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:21:17 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/17 19:58:27 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 20:42:22 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	point_get_iso_coords(t_point *point, int scale)
 	int	x;
 	int	y;
 
-	x = (*point).x * scale * 1.1;
+	x = (*point).x * scale;
 	y = (*point).y * scale;
 	(*point).z *= scale;
 	(*point).x = (x - y) * cos(3 * M_PI_4);
@@ -30,16 +30,13 @@ void	fdf_map_get_isometrical(t_map *map, t_fdf *fdf)
 	int	j;
 	int	scale;
 
-	scale = (ft_min(fdf->win_size.y, fdf->win_size.x) / ft_max(map->width,
-				map->height));
+	scale = (ft_min(fdf->win_size.y, fdf->win_size.x) / (fdf_map_get_highest(map) - fdf_map_get_lowest(map)));
 	i = 0;
 	while (i < map->height)
 	{
 		j = 0;
 		while (j < map->width)
-		{
 			point_get_iso_coords(map->data[i] + j++, scale);
-		}
 		i++;
 	}
 }

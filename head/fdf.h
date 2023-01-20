@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 06:15:40 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/18 19:17:17 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/20 05:28:18 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,8 @@ void		fdf_map_destroy(t_map *map);
 void		fdf_draw_lines(t_fdf *fdf, t_map *map);
 void		fdf_map_get_isometrical(t_map *map, t_fdf *fdf);
 void		fdf_center_in_frame(t_map *map, t_fdf *fdf);
+t_list		*fdf_list_from_file(char *input_path);
+void		fdf_tab_destroy(t_point **tab, int height);
+size_t		count_strs(const char *s, char c);
 
 # endif

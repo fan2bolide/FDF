@@ -5,6 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/head",
+                "${workspaceFolder}/libft/head",
                 "${workspaceFolder}/libft/head"
             ],
             "defines": [],

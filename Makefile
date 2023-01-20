@@ -6,7 +6,7 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/18 19:18:21 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/01/20 05:10:13 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT = libft/libft.a
 MLX = libmlx.dylib
 
 SRC =	fdf.c fdf_parsing.c fdf_map_utils.c fdf_isometrical.c fdf_drawing.c fdf_center_in_frame.c \
-		fdf_image_handling.c fdf_mlx_config.c
+		fdf_image_handling.c fdf_mlx_config.c fdf_parsing_utils.c
  
 BONUS_SRC = 
 
@@ -38,7 +38,7 @@ all : lib mlx .main
 	$(RM) .bonus
 
 $(NAME): $(OBJ) $(LIBFT) .main
-	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) $(DEBUG_FLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 bonus : create_obj_folder lib .bonus
 

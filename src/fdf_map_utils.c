@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:15:09 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/16 15:28:41 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 20:22:45 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	fdf_map_get_highest(t_map *map)
 
 void	fdf_map_destroy(t_map *map)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i < map->height)
 	{

@@ -6,38 +6,33 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:31:56 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/16 15:21:47 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/20 05:46:47 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <fcntl.h>
-#include <stdio.h>
 
-static char	*fdf_get_file(char *input_path)
+static char	**fdf_get_file(char *input_path)
 {
-	int		input_fd;
-	char	*file;
-	char	*new;
-	char	*input_line;
+	char	**file;
+	t_list	*list;
+	t_list	*curr;
+	size_t	i;
 
-	input_fd = open(input_path, O_RDONLY);
-	if (input_fd == -1)
-		return (NULL);
-	file = get_next_line(input_fd);
+	list = fdf_list_from_file(input_path);
+	file = malloc(sizeof(char *) * (ft_lstsize(list) + 1));
 	if (!file)
-		return (NULL);
-	input_line = get_next_line(input_fd);
-	while (input_line)
+		return (ft_lstclear(&list, free), NULL);
+	curr = list;
+	i = 0;
+	while (curr)
 	{
-		new = ft_strjoin(file, input_line);
-		free(input_line);
-		free(file);
-		if (!new)
-			return (NULL);
-		file = new;
-		input_line = get_next_line(input_fd);
+		file[i++] = (char *)curr->content;
+		curr = curr->next;
 	}
+	file[i] = NULL;
+	ft_lstclear_mais_pas_trop(&list);
 	return (file);
 }
 
@@ -55,22 +50,20 @@ static int	fdf_map_get_width(char **map)
 {
 	int		i;
 	int		width;
-	char	**splits;
+	char	*str;
 
-	i = 0;
-	splits = ft_split(map[0], ' ');
-	if (!splits)
-		return (0);
-	width = fdf_map_get_height(splits);
-	ft_split_destroy(splits);
+	str = ft_strtrim(map[0], " \n");
+	width = (int)count_strs(str, ' ');
+	free(str);
+	i = 1;
 	while (map[i])
 	{
-		splits = ft_split(map[i], ' ');
-		if (!splits)
+		str = ft_strtrim(map[i], " \n");
+		if (!str)
 			return (0);
-		if (fdf_map_get_height(splits) != width)
-			return (ft_split_destroy(splits), 0);
-		ft_split_destroy(splits);
+		if (width != (int)count_strs(str, ' '))
+			return (free(str), 0);
+		free(str);
 		i++;
 	}
 	return (width);
@@ -87,11 +80,11 @@ static int	fdf_fill_map(t_map *map, char **datas)
 	{
 		map->data[i] = ft_calloc(sizeof(t_point), map->width);
 		if (!map->data[i])
-			return (0);
+			return (fdf_tab_destroy(map->data, map->height), 0);
 		j = 0;
 		line = ft_split(datas[i], ' ');
 		if (!line)
-			return (0);
+			return (fdf_tab_destroy(map->data, map->height), 0);
 		while (j < map->width)
 		{
 			map->data[i][j].x = i;
@@ -108,22 +101,23 @@ static int	fdf_fill_map(t_map *map, char **datas)
 t_map	*fdf_get_map(char *input_path)
 {
 	t_map	*map;
-	char	**lines;
-	char	*file;
+	char	**file;
 
 	file = fdf_get_file(input_path);
 	if (!file)
 		return (NULL);
-	lines = ft_split(file, '\n');
-	free(file);
 	map = malloc(sizeof(t_map));
-	map->height = fdf_map_get_height(lines);
-	map->width = fdf_map_get_width(lines);
+	if (!map)
+		return (ft_split_destroy(file), NULL);
+	map->height = fdf_map_get_height(file);
+	map->width = fdf_map_get_width(file);
 	if (!map->width)
-		return (ft_split_destroy(lines), free(map),
-			ft_printf("Error : Incorrect map format.\n"), NULL);
+		return (write(2, "Wrong map format, aborting\n", 27), free(map),
+			ft_split_destroy(file), NULL);
 	map->data = ft_calloc(sizeof(int *), map->height);
-	fdf_fill_map(map, lines);
-	ft_split_destroy(lines);
+	if (!map->data)
+		return (ft_split_destroy(file), free(map), NULL);
+	fdf_fill_map(map, file);
+	ft_split_destroy(file);
 	return (map);
 }

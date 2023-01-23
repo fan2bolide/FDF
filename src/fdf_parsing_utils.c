@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 05:03:43 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/20 05:28:01 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/23 03:41:10 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_list	*fdf_list_from_file(char *input_path)
 {
 	t_list	*list;
 	t_list	*curr;
-	int input_fd;
-	char *line;
-	
+	int		input_fd;
+	char	*line;
+
 	input_fd = open(input_path, O_RDONLY);
 	line = get_next_line(input_fd);
 	if (!line)
@@ -39,13 +39,11 @@ t_list	*fdf_list_from_file(char *input_path)
 
 void	fdf_tab_destroy(t_point **tab, int height)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i] && i < height)
-	{
 		free(tab[i++]);
-	}
 	free(tab);
 }
 

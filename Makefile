@@ -6,7 +6,7 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/23 03:19:50 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/01/23 20:28:23 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT = libft/libft.a
 MLX = libmlx.dylib
 
 SRC =	fdf.c fdf_parsing.c fdf_map_utils.c fdf_isometrical.c fdf_drawing.c fdf_center_in_frame.c \
-		fdf_image_handling.c fdf_mlx_config.c fdf_parsing_utils.c
+		fdf_image_handling.c fdf_mlx_config.c fdf_parsing_utils.c fdf_update_frame.c
  
 BONUS_SRC = 
 

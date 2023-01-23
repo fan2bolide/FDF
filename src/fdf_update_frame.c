@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 19:56:26 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/23 21:04:02 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/23 21:04:54 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	fdf_update_frame(int keycode, t_fdf *fdf)
 		fdf->map->scale *= 0.9;
 	else
 		return (1);
-	ft_printf("updated scale : %d !\n", fdf->map->scale);
 	fdf_reset_map(fdf);
 	fdf_map_get_isometrical(fdf);
 	fdf_center_in_frame(fdf);

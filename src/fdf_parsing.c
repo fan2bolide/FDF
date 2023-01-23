@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:31:56 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/20 05:46:47 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/23 03:32:22 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static int	fdf_map_get_width(char **map)
 	char	*str;
 
 	str = ft_strtrim(map[0], " \n");
+	if (!str)
+		return (0);
 	width = (int)count_strs(str, ' ');
 	free(str);
 	i = 1;
@@ -118,6 +120,6 @@ t_map	*fdf_get_map(char *input_path)
 	if (!map->data)
 		return (ft_split_destroy(file), free(map), NULL);
 	fdf_fill_map(map, file);
-	ft_split_destroy(file);
+	ft_old_split_destroy(file);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 04:09:20 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/23 20:31:33 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/24 05:19:04 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ int	main(int argc, char **argv)
 	fdf->win_size.x = fdf->win_size.y * 16 / 9;
 	fdf->win = mlx_new_window(fdf->mlx, fdf->win_size.x, fdf->win_size.y,
 			"FdF");
-	fdf->map->scale = (ft_min(fdf->win_size.y, fdf->win_size.x)
+	fdf->map->zoom_scale = (ft_min(fdf->win_size.y, fdf->win_size.x)
 			/ (fdf_map_get_highest(fdf->map) - fdf_map_get_lowest(fdf->map)));
+	fdf->map->height_scale = fdf->map->zoom_scale;
 	fdf_map_get_isometrical(fdf);
 	fdf_center_in_frame(fdf);
 	fdf_image_handling(fdf);

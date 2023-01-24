@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 19:56:26 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/23 21:04:54 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/24 05:21:38 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,19 @@ int	fdf_update_frame(int keycode, t_fdf *fdf)
 {
 	fdf_draw_lines(fdf, 0x000000);
 	if (keycode == 38)
-		fdf->map->scale *= 1.1;
+	{
+		fdf->map->zoom_scale *= 1.01;
+		fdf->map->height_scale = fdf->map->zoom_scale;
+	}
 	else if (keycode == 40)
-		fdf->map->scale *= 0.9;
+	{
+		fdf->map->zoom_scale *= 0.99;
+		fdf->map->height_scale = fdf->map->zoom_scale;
+	}
+	else if (keycode == 126)
+		fdf->map->height_scale *= 1.01;
+	else if (keycode == 125)
+		fdf->map->height_scale *= 0.99;
 	else
 		return (1);
 	fdf_reset_map(fdf);

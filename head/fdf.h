@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 06:15:40 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/23 20:42:08 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/24 05:15:18 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ typedef struct s_map
 	t_point	**data;
 	int		width;
 	int		height;
-	float	scale;
+	float	zoom_scale;
+	float	height_scale;
 }			t_map;
 
 typedef struct s_fdf

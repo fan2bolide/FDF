@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 06:15:40 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/24 05:15:18 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 01:28:59 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
-# ifndef ESC_KEY
 #  define ESC_KEY 53
-# endif
-# ifndef PLUS_KEY
 #  define PLUS_KEY 69
-# endif
-# ifndef MINUS_KEY
 #  define MINUS_KEY 78
-# endif
+#  define KEY_W 13
+#  define KEY_A 0
+#  define KEY_S 1
+#  define KEY_D 2
 
 typedef struct s_data
 {
@@ -36,9 +34,9 @@ typedef struct s_data
 
 typedef struct s_point
 {
-	int		x;
-	int		y;
-	int		z;
+	float		x;
+	float		y;
+	float		z;
 }			t_point;
 
 typedef struct s_map
@@ -55,6 +53,7 @@ typedef struct s_fdf
 	void	*win;
 	void	*mlx;
 	t_point	win_size;
+	t_point	shift;
 	t_data	img;
 	t_map	*map;
 }			t_fdf;
@@ -72,7 +71,7 @@ void		fdf_center_in_frame(t_fdf *fdf);
 t_list		*fdf_list_from_file(char *input_path);
 void		fdf_tab_destroy(t_point **tab, int height);
 size_t		count_strs(const char *s, char c);
-int			fdf_update_frame(int keycode, t_fdf *fdf);
+int			fdf_update_frame(t_fdf *fdf);
 
 
 # endif

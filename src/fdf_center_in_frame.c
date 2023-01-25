@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:33:20 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/23 19:53:34 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 01:29:39 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	fdf_center_in_frame(t_fdf *fdf)
 {
-	t_point	shift;
 	int		i;
 	int		j;
+	t_point	offset;
 
-	shift.x = fdf->win_size.x / 2 - fdf->map->data[fdf->map->height / 2][fdf->map->width
-		/ 2].x;
-	shift.y = fdf->win_size.y / 2 - (fdf_map_get_highest(fdf->map)
+	offset.x = fdf->win_size.x / 2 - fdf->map->data[fdf->map->height
+		/ 2][fdf->map->width / 2].x;
+	offset.y = fdf->win_size.y / 2 - (fdf_map_get_highest(fdf->map)
 			+ fdf_map_get_lowest(fdf->map)) / 2;
 	i = 0;
 	while (i < fdf->map->height)
@@ -28,8 +28,8 @@ void	fdf_center_in_frame(t_fdf *fdf)
 		j = 0;
 		while (j < fdf->map->width)
 		{
-			fdf->map->data[i][j].x += shift.x;
-			fdf->map->data[i][j].y += shift.y;
+			fdf->map->data[i][j].x += offset.x + fdf->shift.x;
+			fdf->map->data[i][j].y += offset.y + fdf->shift.y;
 			j++;
 		}
 		i++;

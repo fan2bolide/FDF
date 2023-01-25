@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 19:06:41 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/23 20:55:14 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 01:47:15 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,52 @@
 int	close_window(t_fdf *fdf)
 {
 	fdf_map_destroy(fdf->map);
+	mlx_destroy_image(fdf->mlx, fdf->img.img);
 	mlx_destroy_window(fdf->mlx, fdf->win);
 	free(fdf);
 	exit(0);
 	return (0);
 }
 
-int	key_hook(int keycode, t_fdf *fdf)
+void	fdf_update_shift(int keycode, t_fdf *fdf)
+{
+	if (keycode == KEY_W)
+		fdf->shift.y -= 5;
+	if (keycode == KEY_A)
+		fdf->shift.x -= 5;
+	if (keycode == KEY_S)
+		fdf->shift.y += 5;
+	if (keycode == KEY_D)
+		fdf->shift.x += 5;
+}
+
+int	fdf_handle_key_press(int keycode, t_fdf *fdf)
 {
 	if (keycode == ESC_KEY)
 		return (close_window(fdf));
-	return (0);
+	if (keycode == 7)
+	{
+		fdf->map->zoom_scale *= 1.03;
+		fdf->map->height_scale *= 1.03;
+	}
+	else if (keycode == 6)
+	{
+		fdf->map->zoom_scale /= 1.03;
+		fdf->map->height_scale /= 1.03;
+	}
+	else if (keycode == 126)
+		fdf->map->height_scale *= 1.03;
+	else if (keycode == 125)
+		fdf->map->height_scale /= 1.03;
+	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D)
+		fdf_update_shift(keycode, fdf);
+	else
+		return (1);
+	return (fdf_update_frame(fdf));
 }
 
 void	fdf_mlx_config(t_fdf *fdf)
 {
-	mlx_key_hook(fdf->win, key_hook, fdf);
-	mlx_hook(fdf->win, 2, 0, fdf_update_frame, fdf);
+	mlx_hook(fdf->win, 2, 0, fdf_handle_key_press, fdf);
 	mlx_hook(fdf->win, 17, 0, close_window, fdf);
 }

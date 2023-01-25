@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 14:13:14 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/23 20:18:50 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/24 23:41:20 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	fdf_put_line(t_fdf *fdf, t_point a, t_point b, int color)
 	float	x;
 	float	y;
 
-	steps = ft_max(abs(b.x - a.x), abs(b.y - a.y));
+	steps = ft_max(fabs(b.x - a.x), fabs(b.y - a.y));
 	x = a.x;
 	y = a.y;
 	i = 0;
@@ -54,9 +54,11 @@ void	fdf_draw_lines(t_fdf *fdf, int color)
 		while (j < fdf->map->width)
 		{
 			if (j < fdf->map->width - 1)
-				fdf_put_line(fdf, fdf->map->data[i][j], fdf->map->data[i][j + 1], color);
+				fdf_put_line(fdf, fdf->map->data[i][j], fdf->map->data[i][j
+					+ 1], color);
 			if (i < fdf->map->height - 1)
-				fdf_put_line(fdf, fdf->map->data[i][j], fdf->map->data[i + 1][j], color);
+				fdf_put_line(fdf, fdf->map->data[i][j], fdf->map->data[i
+					+ 1][j], color);
 			j++;
 		}
 		i++;

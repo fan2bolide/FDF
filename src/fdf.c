@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 04:09:20 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/26 01:46:40 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/28 15:20:18 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	fdf_init(t_fdf *fdf)
 	fdf->win = mlx_new_window(fdf->mlx, fdf->win_size.x, fdf->win_size.y,
 			"FdF");
 	if (!fdf->win)
-		return (fdf_map_destroy(fdf->map), free(fdf), mlx_destroy_window(fdf->mlx, fdf->win), 1);
+		return (fdf_map_destroy(fdf->map), free(fdf)
+			, mlx_destroy_window(fdf->mlx, fdf->win), 1);
 	fdf->map->zoom_scale = (ft_min(fdf->win_size.y, fdf->win_size.x)
 			/ (fdf_map_get_highest(fdf->map) - fdf_map_get_lowest(fdf->map)));
 	fdf->map->height_scale = fdf->map->zoom_scale;
@@ -34,9 +35,9 @@ int	main(int argc, char **argv)
 	t_fdf	*fdf;
 
 	if (argc != 2)
-		return (write(1,
-				"Error : one argument needed : exiting program\n",
-				46), 1);
+		return (write(1
+				, "Error : one argument needed : exiting program\n"
+				, 46), 1);
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 19:06:41 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/25 01:47:15 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/28 15:19:11 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	fdf_handle_key_press(int keycode, t_fdf *fdf)
 		fdf->map->height_scale *= 1.03;
 	else if (keycode == 125)
 		fdf->map->height_scale /= 1.03;
-	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S || keycode == KEY_D)
+	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S
+		|| keycode == KEY_D)
 		fdf_update_shift(keycode, fdf);
 	else
 		return (1);

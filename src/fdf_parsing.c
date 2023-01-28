@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:31:56 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/28 15:36:01 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/28 15:43:05 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ t_map	*fdf_get_map(char *input_path)
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (ft_putstr_fd("Error : Memory allocation failed : aborting\n", 2)
-			, ft_split_destroy(file), NULL);
+			, ft_old_split_destroy(file), NULL);
 	map->height = fdf_map_get_height(file);
 	map->width = fdf_map_get_width(file);
 	if (!map->width)
@@ -120,7 +120,7 @@ t_map	*fdf_get_map(char *input_path)
 			ft_old_split_destroy(file), NULL);
 	map->data = ft_calloc(sizeof(int *), map->height);
 	if (!map->data)
-		return (ft_split_destroy(file), free(map), NULL);
+		return (ft_old_split_destroy(file), free(map), NULL);
 	fdf_fill_map(map, file);
 	ft_old_split_destroy(file);
 	return (map);

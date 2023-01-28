@@ -6,7 +6,7 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/23 20:28:23 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/01/26 01:58:12 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ all : lib mlx .main
 	$(RM) .bonus
 
 $(NAME): $(OBJ) $(LIBFT) .main
-	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) -O2
 
 bonus : create_obj_folder lib .bonus
 
@@ -51,7 +51,7 @@ create_obj_folder :
 	mkdir -p obj
 
 obj/%.o : src/%.c Makefile
-	cc -Wall -Wextra -Werror -c $< -MD -I libft/head -I head -I mlx -o $@
+	cc -Wall -Wextra -Werror -c $< -MD -I libft/head -I head -I mlx -o $@ -O2
 
 debug : lib
 	$(CC) $(OBJ) $(LIBFT) $(FLAGS) $(DEBUG_FLAGS) -o debug$(NAME)

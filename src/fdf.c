@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 04:09:20 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/28 15:35:07 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/28 15:55:13 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	fdf_init(t_fdf *fdf)
 {
-	fdf->win_size.y = 1080;
+	fdf->win_size.y = 1400;
 	fdf->win_size.x = fdf->win_size.y * 16 / 9;
 	fdf->win = mlx_new_window(fdf->mlx, fdf->win_size.x, fdf->win_size.y,
 			"FdF");

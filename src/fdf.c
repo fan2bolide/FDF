@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 04:09:20 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/28 15:20:18 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/28 15:35:07 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	main(int argc, char **argv)
 	t_fdf	*fdf;
 
 	if (argc != 2)
-		return (write(1
-				, "Error : one argument needed : exiting program\n"
-				, 46), 1);
+		return (ft_putstr_fd(
+				"Error : one argument needed : exiting program\n", 2), 1);
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
-		return (1);
+		return (ft_putstr_fd("Error : Memory allocation failed : aborting\n", 2)
+			, 1);
 	fdf->map = fdf_get_map(argv[1]);
 	if (!fdf->map)
 		return (free(fdf), 1);

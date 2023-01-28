@@ -3,4 +3,3 @@ obj/*.d
 *.dylib
 *.code-workspace
 .DS_Store
-libft2/

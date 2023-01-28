@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:31:56 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/28 15:12:16 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/28 15:36:01 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static char	**fdf_get_file(char *input_path)
 	list = fdf_list_from_file(input_path);
 	file = malloc(sizeof(char *) * (ft_lstsize(list) + 1));
 	if (!file)
-		return (ft_lstclear(&list, free), NULL);
+		return (ft_putstr_fd("Error : Memory allocation failed : aborting\n", 2)
+			, ft_lstclear(&list, free), NULL);
 	curr = list;
 	i = 0;
 	while (curr)
@@ -110,11 +111,12 @@ t_map	*fdf_get_map(char *input_path)
 		return (NULL);
 	map = malloc(sizeof(t_map));
 	if (!map)
-		return (ft_split_destroy(file), NULL);
+		return (ft_putstr_fd("Error : Memory allocation failed : aborting\n", 2)
+			, ft_split_destroy(file), NULL);
 	map->height = fdf_map_get_height(file);
 	map->width = fdf_map_get_width(file);
 	if (!map->width)
-		return (write(2, "Wrong map format, aborting\n", 27), free(map),
+		return (ft_putstr_fd("Wrong map format, aborting\n", 2), free(map),
 			ft_old_split_destroy(file), NULL);
 	map->data = ft_calloc(sizeof(int *), map->height);
 	if (!map->data)

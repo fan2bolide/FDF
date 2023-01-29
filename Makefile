@@ -6,7 +6,7 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/26 01:58:12 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/01/29 10:28:15 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,6 @@ rm_lib :
 re : fclean
 	$(MAKE) all
 
-.PHONY : all run re clean fclean bonus rm_lib
+.PHONY : all run re clean fclean bonus rm_lib create_obj_folder
 
 -include $(DEPENDS)

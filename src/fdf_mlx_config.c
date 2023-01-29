@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 19:06:41 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/28 16:00:50 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/29 11:17:38 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,36 @@ int	close_window(t_fdf *fdf)
 
 void	fdf_update_shift(int keycode, t_fdf *fdf)
 {
-	if (keycode == KEY_W)
+	if (keycode == FDF_KEY_W)
 		fdf->shift.y -= 5;
-	if (keycode == KEY_A)
+	if (keycode == FDF_KEY_A)
 		fdf->shift.x -= 5;
-	if (keycode == KEY_S)
+	if (keycode == FDF_KEY_S)
 		fdf->shift.y += 5;
-	if (keycode == KEY_D)
+	if (keycode == FDF_KEY_D)
 		fdf->shift.x += 5;
 }
 
 int	fdf_handle_key_press(int keycode, t_fdf *fdf)
 {
-	if (keycode == ESC_KEY)
+	if (keycode == FDF_ESC_KEY)
 		return (close_window(fdf));
-	if (keycode == 7)
+	if (keycode == FDF_KEY_X)
 	{
 		fdf->map->zoom_scale *= 1.03;
 		fdf->map->height_scale *= 1.03;
 	}
-	else if (keycode == 6)
+	else if (keycode == FDF_KEY_Z)
 	{
 		fdf->map->zoom_scale /= 1.03;
 		fdf->map->height_scale /= 1.03;
 	}
-	else if (keycode == 126)
+	else if (keycode == FDF_KEY_UP)
 		fdf->map->height_scale *= 1.03;
-	else if (keycode == 125)
+	else if (keycode == FDF_KEY_DOWN)
 		fdf->map->height_scale /= 1.03;
-	else if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S
-		|| keycode == KEY_D)
+	else if (keycode == FDF_KEY_W || keycode == FDF_KEY_A || keycode == FDF_KEY_S
+		|| keycode == FDF_KEY_D)
 		fdf_update_shift(keycode, fdf);
 	else
 		return (1);

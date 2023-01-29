@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 06:15:40 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/25 01:28:59 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/29 11:19:53 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
-#  define ESC_KEY 53
-#  define PLUS_KEY 69
-#  define MINUS_KEY 78
-#  define KEY_W 13
-#  define KEY_A 0
-#  define KEY_S 1
-#  define KEY_D 2
+#  define FDF_ESC_KEY 53
+#  define FDF_KEY_X 6
+#  define FDF_KEY_Z 7
+#  define FDF_KEY_UP 126
+#  define FDF_KEY_DOWN 125
+#  define FDF_KEY_W 13
+#  define FDF_KEY_A 0
+#  define FDF_KEY_S 1
+#  define FDF_KEY_D 2
 
 typedef struct s_data
 {

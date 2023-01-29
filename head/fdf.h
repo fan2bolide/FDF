@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 06:15:40 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/29 11:19:53 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/29 11:34:57 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
-#  define FDF_ESC_KEY 53
-#  define FDF_KEY_X 6
-#  define FDF_KEY_Z 7
-#  define FDF_KEY_UP 126
-#  define FDF_KEY_DOWN 125
-#  define FDF_KEY_W 13
-#  define FDF_KEY_A 0
-#  define FDF_KEY_S 1
-#  define FDF_KEY_D 2
+# define FDF_ESC_KEY 53
+# define FDF_KEY_X 6
+# define FDF_KEY_Z 7
+# define FDF_KEY_UP 126
+# define FDF_KEY_DOWN 125
+# define FDF_KEY_W 13
+# define FDF_KEY_A 0
+# define FDF_KEY_S 1
+# define FDF_KEY_D 2
 
 typedef struct s_data
 {
@@ -75,5 +75,4 @@ void		fdf_tab_destroy(t_point **tab, int height);
 size_t		count_strs(const char *s, char c);
 int			fdf_update_frame(t_fdf *fdf);
 
-
-# endif
+#endif

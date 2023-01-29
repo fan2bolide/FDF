@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:31:56 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/28 15:43:05 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/29 13:19:49 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static char	**fdf_get_file(char *input_path)
 	size_t	i;
 
 	list = fdf_list_from_file(input_path);
+	if (!list)
+		return (NULL);
 	file = malloc(sizeof(char *) * (ft_lstsize(list) + 1));
 	if (!file)
 		return (ft_putstr_fd("Error : Memory allocation failed : aborting\n", 2)

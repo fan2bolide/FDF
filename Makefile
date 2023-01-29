@@ -6,7 +6,7 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/29 10:28:15 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/01/29 10:29:59 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJ = $(addprefix obj/,$(SRC:.c=.o))
 
 BONUS_OBJ = $(addprefix obj/,$(BONUS_SRC:.c=.o))
 
-all : lib mlx .main
+all : create_obj_folder lib mlx .main
 	@$(MAKE) $(NAME)
 
 .main :

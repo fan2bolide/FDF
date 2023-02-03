@@ -15,13 +15,21 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
-#  define ESC_KEY 53
-#  define PLUS_KEY 69
-#  define MINUS_KEY 78
-#  define KEY_W 13
-#  define KEY_A 0
-#  define KEY_S 1
-#  define KEY_D 2
+# define ESC_KEY 53
+# define MINUS_KEY 6
+# define PLUS_KEY 7
+# define UP_KEY 126
+# define DOWN_KEY 125
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define DEFAULT_WIN_SIZE 1080
+# define ALLOC_ERR "Error: allocation error occured, aborting\n"
+# define WRONG_MAP "Error: wrong map format, aborting\n"
+# define USAGE "Error: fdf usage: ./fdf <map_path> [-s <win_size>]\n"
+# define NO_FILE "Error: "
+# define EMPTY_FILE "Error: empty file\n"
 
 typedef struct s_data
 {
@@ -73,5 +81,4 @@ void		fdf_tab_destroy(t_point **tab, int height);
 size_t		count_strs(const char *s, char c);
 int			fdf_update_frame(t_fdf *fdf);
 
-
-# endif
+#endif

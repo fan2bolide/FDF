@@ -6,7 +6,7 @@
 #    By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 16:28:53 by bajeanno          #+#    #+#              #
-#    Updated: 2023/01/26 01:58:12 by bajeanno         ###   ########lyon.fr    #
+#    Updated: 2023/02/01 13:37:28 by bajeanno         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,31 +30,20 @@ OBJ = $(addprefix obj/,$(SRC:.c=.o))
 
 BONUS_OBJ = $(addprefix obj/,$(BONUS_SRC:.c=.o))
 
-all : lib mlx .main
+all : lib mlx
 	@$(MAKE) $(NAME)
 
-.main :
-	touch .main
-	$(RM) .bonus
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) .main
-	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) -O2
-
-bonus : create_obj_folder lib .bonus
-
-.bonus : $(OBJ) $(BONUS_OBJ)
-	$(CC) $(OBJ) $(BONUS_OBJ) $(LIBFT) $(FLAGS) -o $(NAME)
-	touch .bonus
-	$(RM) .mandatory
+bonus : create_obj_folder lib
+	@$(MAKE) $(NAME)
 
 create_obj_folder :
 	mkdir -p obj
 
-obj/%.o : src/%.c Makefile
-	cc -Wall -Wextra -Werror -c $< -MD -I libft/head -I head -I mlx -o $@ -O2
-
-debug : lib
-	$(CC) $(OBJ) $(LIBFT) $(FLAGS) $(DEBUG_FLAGS) -o debug$(NAME)
+obj/%.o : src/%.c Makefile $(LIBFT)
+	cc -Wall -Wextra -Werror -c $< -MD -I libft/head -I head -I mlx -o $@
 
 lib : libft
 	@$(MAKE) -C libft
@@ -89,6 +78,6 @@ rm_lib :
 re : fclean
 	$(MAKE) all
 
-.PHONY : all run re clean fclean bonus rm_lib
+.PHONY : all run re clean fclean bonus rm_lib create_obj_folder
 
 -include $(DEPENDS)

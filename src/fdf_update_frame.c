@@ -23,8 +23,8 @@ static void	fdf_reset_map(t_fdf *fdf)
 		j = 0;
 		while (j < fdf->map->width)
 		{
-			fdf->map->data[i][j].x = i;
-			fdf->map->data[i][j].y = j;
+			fdf->map->data[i][j].x = (float)i;
+			fdf->map->data[i][j].y = (float)j;
 			j++;
 		}
 		i++;

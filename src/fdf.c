@@ -25,12 +25,13 @@ static int	fdf_check_args(int argc, char **argv, t_fdf *fdf)
 static int	fdf_init(t_fdf *fdf)
 {
 	fdf->win_size.x = fdf->win_size.y * 16 / 9;
-	fdf->win = mlx_new_window(fdf->mlx, fdf->win_size.x,
-			fdf->win_size.y, "FdF");
+	fdf->win = mlx_new_window(fdf->mlx, (int)fdf->win_size.x,
+			(int)fdf->win_size.y, "FdF");
 	if (!fdf->win)
 		return (fdf_map_destroy(fdf->map),
 			mlx_destroy_window(fdf->mlx, fdf->win), 1);
-	fdf->map->zoom_scale = (ft_min(fdf->win_size.y, fdf->win_size.x)
+	fdf->map->zoom_scale = (float)(ft_min((int)fdf->win_size.y,
+				(int)fdf->win_size.x)
 			/ (fdf_map_get_highest(fdf->map)
 				- fdf_map_get_lowest(fdf->map)));
 	fdf->map->height_scale = fdf->map->zoom_scale;

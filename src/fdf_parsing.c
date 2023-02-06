@@ -56,9 +56,11 @@ static int	fdf_map_get_width(char **map)
 	char	*str;
 
 	str = ft_strtrim(map[0], " \n");
+	ft_printf("%s\n", str);
 	if (!str)
 		return (0);
 	width = (int)count_strs(str, ' ');
+	ft_printf("%d\n", width);
 	free(str);
 	i = 1;
 	while (map[i])

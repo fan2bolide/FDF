@@ -12,7 +12,7 @@
 
 NAME = fdf
 
-FLAGS = -Werror -Wall -Wextra -I libft/head -I libft -I . -I mlx
+FLAGS = -Werror -Wall -Wextra -I libft/head -I libft -I . -I minilibx-linux -g #-fsanitize=address
 
 DEBUG_FLAGS = -fsanitize=address -g3
 
@@ -30,11 +30,11 @@ OBJ = $(addprefix obj/,$(SRC:.c=.o))
 
 BONUS_OBJ = $(addprefix obj/,$(BONUS_SRC:.c=.o))
 
-all : lib mlx
+all : create_obj_folder lib mlx
 	@$(MAKE) $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) $(LIBFT) -lm -Lminilibx-linux -lmlx -lXext -lX11 -o $(NAME)
 
 bonus : create_obj_folder lib
 	@$(MAKE) $(NAME)
@@ -43,7 +43,7 @@ create_obj_folder :
 	mkdir -p obj
 
 obj/%.o : src/%.c Makefile $(LIBFT)
-	cc -Wall -Wextra -Werror -c $< -MD -I libft/head -I head -I mlx -o $@
+	cc $(FLAGS) -c $< -MD -I libft/head -I head -I minilibx-linux -o $@
 
 lib : libft
 	@$(MAKE) -C libft
@@ -51,7 +51,7 @@ lib : libft
 mlx : $(MLX)
 
 $(MLX) :
-	$(MAKE) -C mlx
+	$(MAKE) -C minilibx-linux
 
 libft :
 	git clone git@github.com:fan2bolide/libft.git
@@ -63,14 +63,14 @@ clean :
 	$(RM) $(OBJ) $(BONUS_OBJ) $(DEPENDS)
 	$(RM) -r $(NAME).dSYM
 	$(MAKE) clean -C libft
-	$(MAKE) clean -C mlx
+	$(MAKE) clean -C minilibx-linux
 	
 fclean : clean
 	$(RM) libmlx.dylib
 	$(RM) $(NAME)
 	$(RM) .main .bonus
 	$(MAKE) fclean -C libft
-	$(MAKE) clean -C mlx
+	$(MAKE) clean -C minilibx-linux
 
 rm_lib :
 	$(RM) -r libft

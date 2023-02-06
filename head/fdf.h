@@ -15,15 +15,15 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
-# define ESC_KEY 53
-# define MINUS_KEY 6
-# define PLUS_KEY 7
-# define UP_KEY 126
-# define DOWN_KEY 125
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
+# define ESC_KEY 65307
+# define MINUS_KEY 122
+# define PLUS_KEY 120
+# define UP_KEY 65362
+# define DOWN_KEY 65364
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
 # define DEFAULT_WIN_SIZE 1080
 # define ALLOC_ERR "Error: allocation error occured, aborting\n"
 # define WRONG_MAP "Error: wrong map format, aborting\n"

@@ -17,6 +17,8 @@ int	close_window(t_fdf *fdf)
 	fdf_map_destroy(fdf->map);
 	mlx_destroy_image(fdf->mlx, fdf->img.img);
 	mlx_destroy_window(fdf->mlx, fdf->win);
+	mlx_destroy_display(fdf->mlx);
+	free(fdf->mlx);
 	exit(0);
 	return (0);
 }
@@ -61,6 +63,6 @@ int	fdf_handle_key_press(int keycode, t_fdf *fdf)
 
 void	fdf_mlx_config(t_fdf *fdf)
 {
-	mlx_hook(fdf->win, 2, 0, fdf_handle_key_press, fdf);
+	mlx_hook(fdf->win, 2, 1, fdf_handle_key_press, fdf);
 	mlx_hook(fdf->win, 17, 0, close_window, fdf);
 }

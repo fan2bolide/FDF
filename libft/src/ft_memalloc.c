@@ -15,12 +15,13 @@
 void	*ft_memalloc(size_t size)
 {
 	char	*ptr;
+	size_t	i;
 
+	i = 0;
 	ptr = malloc(size);
 	if (!ptr)
 		return (ptr);
-	while (size >= 0)
-		ptr[size--] = 0;
-	(void)ptr;
+	while (i < size)
+		ptr[i++] = 0;
 	return (ptr);
 }

@@ -80,6 +80,7 @@ SRC			=	ft_atoi.c			\
 				
 
 OBJ = $(addprefix obj/,$(SRC:.c=.o))
+DEPENDS = $(addprefix obj/,$(SRC:.c=.d))
 
 all	: create_obj_folder $(NAME)
 
@@ -87,7 +88,7 @@ $(NAME): $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
 
 obj/%.o : src/%.c Makefile head/libft.h
-	cc -Wall -Wextra -Werror -c $< -o $@ -I head
+	cc -Wall -Wextra -Werror -c -MD $< -o $@ -I head -g
 
 create_obj_folder :
 	@mkdir -p obj
@@ -103,3 +104,5 @@ fclean: clean
 re: fclean all
 
 .PHONY : all bonus clean fclean re
+
+-include $(DEPENDS)

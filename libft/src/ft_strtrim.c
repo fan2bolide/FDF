@@ -27,9 +27,11 @@ static int	ft_get_end(char const *s, char const *set)
 	int	i;
 
 	i = ft_strlen(s) - 1;
-	while (i > 0 && ft_isset(s[i], set))
-		i--;
 	if (i == 0)
+		return (!ft_isset(s[0], set));
+	while (i >= 0 && ft_isset(s[i], set))
+		i--;
+	if (i == -1)
 		return (0);
 	return (i + 1);
 }

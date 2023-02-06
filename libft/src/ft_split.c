@@ -81,20 +81,18 @@ char	**ft_split(const char *s, char c)
 {
 	char	**strs;
 	char	*newstr;
-	char	*sep;
+	char	sep[2];
 	size_t	count;
 
 	count = count_strs(s, c);
 	strs = malloc(sizeof(char *) * (count + 1));
 	if (!strs)
 		return (NULL);
-	sep = ft_strndup(&c, 1);
-	if (!sep)
-		return (free(strs), NULL);
+	sep[0] = c;
+	sep[1] = 0;
 	newstr = ft_strtrim(s, sep);
 	if (!newstr)
-		return (free(strs), free(sep), NULL);
-	free(sep);
+		return (free(strs), NULL);
 	strs[0] = newstr;
 	ft_add_strings(strs, c, newstr, count);
 	return (strs);

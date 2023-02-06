@@ -6,7 +6,7 @@
 /*   By: bajeanno <bajeanno@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 06:15:40 by bajeanno          #+#    #+#             */
-/*   Updated: 2023/01/29 11:34:57 by bajeanno         ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 01:28:59 by bajeanno         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,21 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
-# define FDF_ESC_KEY 53
-# define FDF_KEY_X 6
-# define FDF_KEY_Z 7
-# define FDF_KEY_UP 126
-# define FDF_KEY_DOWN 125
-# define FDF_KEY_W 13
-# define FDF_KEY_A 0
-# define FDF_KEY_S 1
-# define FDF_KEY_D 2
+# define ESC_KEY 65307
+# define MINUS_KEY 122
+# define PLUS_KEY 120
+# define UP_KEY 65362
+# define DOWN_KEY 65364
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define DEFAULT_WIN_SIZE 1080
+# define ALLOC_ERR "Error: allocation error occured, aborting\n"
+# define WRONG_MAP "Error: wrong map format, aborting\n"
+# define USAGE "Error: fdf usage: ./fdf <map_path> [-s <win_size>]\n"
+# define NO_FILE "Error: "
+# define EMPTY_FILE "Error: empty file\n"
 
 typedef struct s_data
 {

@@ -14,7 +14,7 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	if (start >= 0 && start < ft_strlen(s))
+	if (start < ft_strlen(s))
 	{
 		if (len > 0)
 			return (ft_strndup((char *)s + start, len));

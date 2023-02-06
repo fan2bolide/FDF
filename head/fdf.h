@@ -24,7 +24,7 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
-# define DEFAULT_WIN_SIZE 1080
+# define DEFAULT_WIN_SIZE 720
 # define ALLOC_ERR "Error: allocation error occured, aborting\n"
 # define WRONG_MAP "Error: wrong map format, aborting\n"
 # define USAGE "Error: fdf usage: ./fdf <map_path> [-s <win_size>]\n"

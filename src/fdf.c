@@ -30,13 +30,12 @@ static int	fdf_init(t_fdf *fdf)
 	if (!fdf->win)
 		return (fdf_map_destroy(fdf->map), 1);
 	if (fdf_map_get_highest(fdf->map) - fdf_map_get_lowest(fdf->map) != 0)
-		fdf->map->zoom_scale = (float)(ft_min((int)fdf->win_size.y,
-				(int)fdf->win_size.x)
-			/ (fdf_map_get_highest(fdf->map)
-				- fdf_map_get_lowest(fdf->map)));
+		fdf->map->zoom_scale = (float)(ft_min((int)fdf->win_size.y, \
+		(int)fdf->win_size.x) / (fdf_map_get_highest(fdf->map) \
+		- fdf_map_get_lowest(fdf->map)));
 	else
-		fdf->map->zoom_scale = (float)(ft_min((int)fdf->win_size.y,
-											  (int)fdf->win_size.x));
+		fdf->map->zoom_scale = (float)(ft_min((int)fdf->win_size.y, \
+												(int)fdf->win_size.x));
 	fdf->map->height_scale = fdf->map->zoom_scale;
 	fdf_map_get_isometrical(fdf);
 	fdf->shift.x = 0;

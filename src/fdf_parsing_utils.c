@@ -27,7 +27,8 @@ t_list	*fdf_list_from_file(char *input_path)
 			perror(input_path), NULL);
 	line = get_next_line(input_fd);
 	if (!line)
-		return (close(input_fd), write(2, EMPTY_FILE, ft_strlen(EMPTY_FILE)), NULL);
+		return (close(input_fd), write(2, EMPTY_FILE, \
+		ft_strlen(EMPTY_FILE)), NULL);
 	list = ft_lstnew(line);
 	curr = list;
 	while (line)
@@ -35,8 +36,8 @@ t_list	*fdf_list_from_file(char *input_path)
 		line = get_next_line(input_fd);
 		curr->next = ft_lstnew(line);
 		if (!curr->next)
-			return (close(input_fd), ft_lstclear(&list, free), write(2, ALLOC_ERR,
-					ft_strlen(ALLOC_ERR)), NULL);
+			return (close(input_fd), ft_lstclear(&list, free), \
+			write(2, ALLOC_ERR, ft_strlen(ALLOC_ERR)), NULL);
 		curr = curr->next;
 	}
 	return (close(input_fd), list);

@@ -12,7 +12,7 @@
 
 NAME = fdf
 
-FLAGS = -Werror -Wall -Wextra -I libft/head -I libft -I . -I minilibx-linux -g #-fsanitize=address
+FLAGS = -Werror -Wall -Wextra -I libft/head -I libft -I . -I minilibx-linux #-fsanitize=address
 
 DEBUG_FLAGS = -fsanitize=address -g3
 

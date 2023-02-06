@@ -56,11 +56,9 @@ static int	fdf_map_get_width(char **map)
 	char	*str;
 
 	str = ft_strtrim(map[0], " \n");
-	ft_printf("%s\n", str);
 	if (!str)
 		return (0);
 	width = (int)count_strs(str, ' ');
-	ft_printf("%d\n", width);
 	free(str);
 	i = 1;
 	while (map[i])
@@ -115,7 +113,7 @@ t_map	*fdf_get_map(char *input_path)
 		return (NULL);
 	map = malloc(sizeof(t_map));
 	if (!map)
-		return (ft_split_destroy(file),
+		return (ft_old_split_destroy(file),
 			write(2, ALLOC_ERR, ft_strlen(ALLOC_ERR)), NULL);
 	map->height = fdf_map_get_height(file);
 	map->width = fdf_map_get_width(file);
@@ -124,7 +122,7 @@ t_map	*fdf_get_map(char *input_path)
 			ft_old_split_destroy(file), NULL);
 	map->data = ft_calloc(sizeof(int *), map->height);
 	if (!map->data)
-		return (ft_split_destroy(file),
+		return (ft_old_split_destroy(file),
 			write(2, WRONG_MAP, ft_strlen(WRONG_MAP)), free(map), NULL);
 	fdf_fill_map(map, file);
 	ft_old_split_destroy(file);

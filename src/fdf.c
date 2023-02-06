@@ -28,8 +28,7 @@ static int	fdf_init(t_fdf *fdf)
 	fdf->win = mlx_new_window(fdf->mlx, (int)fdf->win_size.x,
 			(int)fdf->win_size.y, "FdF");
 	if (!fdf->win)
-		return (fdf_map_destroy(fdf->map),
-			mlx_destroy_window(fdf->mlx, fdf->win), 1);
+		return (fdf_map_destroy(fdf->map), 1);
 	if (fdf_map_get_highest(fdf->map) - fdf_map_get_lowest(fdf->map) != 0)
 		fdf->map->zoom_scale = (float)(ft_min((int)fdf->win_size.y,
 				(int)fdf->win_size.x)

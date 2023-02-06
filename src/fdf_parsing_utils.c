@@ -59,7 +59,6 @@ size_t	count_strs(const char *s, char c)
 
 	count = 0;
 	i = 0;
-	ft_printf("%s\n", s);
 	while (s[i])
 	{
 		while (s[i] && s[i] == c)

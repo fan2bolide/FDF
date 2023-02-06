@@ -33,7 +33,7 @@ static void	fdf_reset_map(t_fdf *fdf)
 
 int	fdf_update_frame(t_fdf *fdf)
 {
-	fdf_draw_lines(fdf, 0x000000);
+	ft_bzero(fdf->img.addr, fdf->win_size.x * fdf->win_size.y * 4);
 	fdf_reset_map(fdf);
 	fdf_map_get_isometrical(fdf);
 	fdf_center_in_frame(fdf);
